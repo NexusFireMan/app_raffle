@@ -25,11 +25,11 @@ class LandingPage extends StatelessWidget {
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SvgPicture.asset(
                 'assets/images/logo.svg',
-                width: size.width * 0.6,
+                width: size.width * 0.9,
               ),
               const SizedBox(height: 50),
               Text(
@@ -49,14 +49,14 @@ class LandingPage extends StatelessWidget {
                     context,
                     AppLocalizations.of(context)?.translate('landing_guest') ??
                         'Guest',
-                    'assets/images/guest.svg',
+                    'assets/icons/guest.svg',
                     '/guest',
                   ),
                   _buildButton(
                     context,
                     AppLocalizations.of(context)?.translate('landing_login') ??
                         'Log In',
-                    'assets/images/login.svg',
+                    'assets/icons/login.svg',
                     '/login',
                   ),
                   _buildButton(
@@ -64,7 +64,7 @@ class LandingPage extends StatelessWidget {
                     AppLocalizations.of(context)
                             ?.translate('landing_register') ??
                         'Register',
-                    'assets/images/register.svg',
+                    'assets/icons/register.svg',
                     '/register',
                   ),
                 ],
@@ -119,10 +119,10 @@ class LandingPage extends StatelessWidget {
               image,
               width: 50,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               label,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ],
         ),

@@ -1,5 +1,10 @@
 {
     "app_title": "Aplicación de Rifas",
+    "landing_title": "Bienvenido a Raffle App",
+    "landing_guest":"Invitado",
+    "landing_login":"Login",
+    "landing_register":"Registro",
+    "landing_contact":"Contacto",
     "product_price": "Precio del producto:",
     "number_of_participations": "Número de participaciones:",
     "participation_price": "Precio de participación:",

@@ -1,5 +1,10 @@
 {
     "app_title": "Raffle App",
+    "landing_title": "Welcome to Raffle App",
+    "landing_guest":"Guest",
+    "landing_login":"Login",
+    "landing_register":"Register",
+    "landing_contact":"Contact Us",
     "product_price": "Product price:",
     "number_of_participations": "Number of participations:",
     "participation_price": "Participation price:",
