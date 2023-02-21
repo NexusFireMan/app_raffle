@@ -1,47 +1,71 @@
-import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart';
+
+const kSupportedLanguages = [
+  Locale('en', ''),
+  Locale('es', ''),
+];
 
 class AppLocalizations {
-  final Locale locale;
+  final Locale _locale;
+  Map<String, dynamic> _messages = Map();
 
-  AppLocalizations(this.locale);
+  AppLocalizations(this._locale);
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(
-        context, AppLocalizationsDelegate);
+  static AppLocalizations? of(BuildContext context) =>
+      Localizations.of<AppLocalizations>(context, AppLocalizations);
+
+  static LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
+
+  Future<void> loadMessage() async {
+    String jsonMessage = "";
+    try {
+      jsonMessage = await rootBundle
+          .loadString('assets/i18n/${_locale.languageCode}.json');
+    } catch (_) {
+      jsonMessage = await rootBundle.loadString('assets/i18n/en.json');
+    }
+
+    _messages = json.decode(jsonMessage);
   }
 
-  late Map<String, String> _localizedStrings;
+  String translate(String key) {
+    if (_messages.containsKey(key)) {
+      return _messages[key];
+    } else {
+      var valLotated = key;
+      assert(() {
+        valLotated = 'Falta traducción de $key';
+        return true;
+      }());
 
-  Future<bool> load() async {
-    final jsonString =
-        await rootBundle.loadString('i18n/${locale.languageCode}.json');
-    final jsonMap = json.decode(jsonString) as Map<String, dynamic>;
-    _localizedStrings =
-        jsonMap.map((key, value) => MapEntry(key, value.toString()));
-    return true;
-  }
-
-  String? translate(String key) {
-    return _localizedStrings[key];
+      return valLotated;
+    }
   }
 }
 
-class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
-  const AppLocalizationsDelegate();
-
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'es'].contains(locale.languageCode);
+    try {
+      kSupportedLanguages
+          .firstWhere((element) => element.languageCode == locale.languageCode);
+      return true;
+    } catch (_) {}
+
+    return false;
   }
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    final localizations = AppLocalizations(locale);
-    await localizations.load();
-    return localizations;
+    AppLocalizations appLocalizations = AppLocalizations(locale);
+
+    await appLocalizations.loadMessage();
+
+    return appLocalizations;
   }
 
   @override

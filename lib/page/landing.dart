@@ -9,6 +9,8 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    var lan = AppLocalizations.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -20,7 +22,7 @@ class LandingPage extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Color(0xFFFBAB66),
-                Color(0xFFF7418C),
+                Color.fromARGB(255, 255, 136, 32),
               ],
             ),
           ),
@@ -33,8 +35,7 @@ class LandingPage extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               Text(
-                AppLocalizations.of(context)?.translate('landing_title') ??
-                    'Welcome to Raffle App',
+                lan!.translate('landing_title'),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 28,
@@ -47,29 +48,26 @@ class LandingPage extends StatelessWidget {
                 children: [
                   _buildButton(
                     context,
-                    AppLocalizations.of(context)?.translate('landing_guest') ??
-                        'Guest',
+                    lan.translate('landing_guest'),
                     'assets/icons/guest.svg',
                     '/guest',
                   ),
                   _buildButton(
                     context,
-                    AppLocalizations.of(context)?.translate('landing_login') ??
-                        'Log In',
+                    lan.translate('landing_login'),
                     'assets/icons/login.svg',
                     '/login',
                   ),
                   _buildButton(
                     context,
-                    AppLocalizations.of(context)
-                            ?.translate('landing_register') ??
-                        'Register',
+                    lan.translate('landing_register'),
                     'assets/icons/register.svg',
                     '/register',
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              //const SizedBox(height: 20),
+              const Expanded(child: SizedBox()),
               ElevatedButton(
                 onPressed: () => {},
                 style: ButtonStyle(
@@ -87,8 +85,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  AppLocalizations.of(context)?.translate('landing_contact') ??
-                      'Contact Us',
+                  lan.translate('landing_contact'),
                   style: const TextStyle(fontSize: 16),
                 ),
               ),

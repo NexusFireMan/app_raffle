@@ -22,12 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         fontFamily: 'Roboto',
       ),
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('es', ''),
-      ],
-      localizationsDelegates: const [
-        AppLocalizationsDelegate(),
+      supportedLocales: kSupportedLanguages,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
