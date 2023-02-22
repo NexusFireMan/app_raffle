@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import '../src/locale.dart';
 //import '../page/guest.dart';
 import '../page/landing.dart';
+import 'src/theme.dart';
 //import '../page/login.dart';
 //import '../page/register.dart';
 
@@ -18,10 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Raffle App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        fontFamily: 'Roboto',
-      ),
+      theme: MyTheme.lightTheme,
       supportedLocales: kSupportedLanguages,
       localizationsDelegates: [
         AppLocalizations.delegate,

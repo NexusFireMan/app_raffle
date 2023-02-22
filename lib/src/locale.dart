@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Supported Languages
 const kSupportedLanguages = [
   Locale('en', ''),
   Locale('es', ''),
@@ -9,7 +10,7 @@ const kSupportedLanguages = [
 
 class AppLocalizations {
   final Locale _locale;
-  Map<String, dynamic> _messages = Map();
+  Map<String, dynamic> _messages = {};
 
   AppLocalizations(this._locale);
 
@@ -19,6 +20,7 @@ class AppLocalizations {
   static LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
+  // Charge language code
   Future<void> loadMessage() async {
     String jsonMessage = "";
     try {
@@ -31,13 +33,14 @@ class AppLocalizations {
     _messages = json.decode(jsonMessage);
   }
 
+  // Translate strings
   String translate(String key) {
     if (_messages.containsKey(key)) {
       return _messages[key];
     } else {
       var valLotated = key;
       assert(() {
-        valLotated = 'Falta traducción de $key';
+        valLotated = 'Missing translation of $key';
         return true;
       }());
 

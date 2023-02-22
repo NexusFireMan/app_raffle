@@ -9,6 +9,7 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    // Translate var
     var lan = AppLocalizations.of(context);
 
     return Scaffold(
@@ -21,43 +22,49 @@ class LandingPage extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xFFFBAB66),
-                Color.fromARGB(255, 255, 136, 32),
+                Color(0xFFEA9937),
+                Color(0xFFEA3C12),
               ],
             ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset(
-                'assets/images/logo.svg',
-                width: size.width * 0.9,
-              ),
-              const SizedBox(height: 50),
-              Text(
-                lan!.translate('landing_title'),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+              // Image for heading
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: size.width * 0.9,
                 ),
               ),
+              // Heading space
               const SizedBox(height: 50),
+              // Title for landing
+              Text(
+                lan!.translate('landing_title'),
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              const SizedBox(height: 50),
+              // Row for button
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  // Button guest
                   _buildButton(
                     context,
                     lan.translate('landing_guest'),
                     'assets/icons/guest.svg',
                     '/guest',
                   ),
+                  // Button Login
                   _buildButton(
                     context,
                     lan.translate('landing_login'),
                     'assets/icons/login.svg',
                     '/login',
                   ),
+                  // Buton register
                   _buildButton(
                     context,
                     lan.translate('landing_register'),
@@ -66,8 +73,9 @@ class LandingPage extends StatelessWidget {
                   ),
                 ],
               ),
-              //const SizedBox(height: 20),
+              // Expand body
               const Expanded(child: SizedBox()),
+              // Button for contact us
               ElevatedButton(
                 onPressed: () => {},
                 style: ButtonStyle(
@@ -86,8 +94,12 @@ class LandingPage extends StatelessWidget {
                 ),
                 child: Text(
                   lan.translate('landing_contact'),
-                  style: const TextStyle(fontSize: 16),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
+              ),
+              // Separated
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),
@@ -96,6 +108,7 @@ class LandingPage extends StatelessWidget {
     );
   }
 
+  // Construct for button
   Widget _buildButton(
       BuildContext context, String label, String image, String route) {
     final size = MediaQuery.of(context).size;
@@ -119,7 +132,7 @@ class LandingPage extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               label,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),
